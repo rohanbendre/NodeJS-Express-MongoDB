@@ -3,7 +3,7 @@ var app        = express();
 var bodyParser = require('body-parser');
 var routes     = require('./routes');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/restdb');
+mongoose.connect('mongodb://localhost:27017/monetizedDB');
 // express app will use body-parser to get data from POST
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -16,6 +16,6 @@ var port = process.env.PORT || 5000;        // set the port
 // We'll just leave it so all routes are relative to '/'
 app.use('/', routes);
 
-// Start server listening on port 8080
+// Start server listening on port 5000
 app.listen(port);
 console.log('RESTAPI listening on port: ' + port);
