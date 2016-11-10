@@ -18,14 +18,14 @@ cfg.secret = process.env.APP_SECRET || 'to turn around';
 
 //TODO - prod config, this is dev
 cfg.mongoConfig = {
-    host1: 'vxpid-ppimsh01',
-    host2: 'vxpid-ppimsh02',
-    host3: 'vxpid-ppimsh03',
-    port: 27039,
-    dbName: 'chtbt_db',
-    user: 'chtbt_app',
-    pass: 'gjtGmjFzamR',
-    replicaSet: 'pimsh.dp.f912.27039'
+    host1: 'vxpid-pma00004',
+    host2: 'vxpid-pma00005',
+    host3: 'vxpid-pma00006',
+    port: 27031,
+    dbName: 'ma000_db',
+    user: 'ma000_app',
+    pass: 'tMT1G5ekhEr',
+    replicaSet: 'ma000.dp.e548.27031'
 };
 
 // Export configuration object
