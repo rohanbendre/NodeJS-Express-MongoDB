@@ -1,9 +1,19 @@
 {
     "name": "lmREST",
     "main": "server.js",
+    "scripts": {
+    	"test": "mocha -r jscoverage --covout=html --covinject=true --coverage=90,85,75 test"
+    },
     "dependencies": {
         "express": "~4.13.2",
-        "mongoose": "~4.1.0",
-        "body-parser": "~1.13.3"
-    }
+        "mongoose": "~4.7.2",
+        "body-parser": "~1.13.3",
+        "promise": "7.1.1",
+        "chai": "3.5.0",
+        "mocha": "3.1.2",
+        "chai-http": "3.0.0",
+        "jscoverage": "0.6.0"
+    },
+    "engines": {"node": "4.2.5"},
+    "test": "mocha --timeout 10000"
 }
