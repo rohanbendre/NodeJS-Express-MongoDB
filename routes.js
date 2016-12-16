@@ -31,19 +31,18 @@ router.route('/parking/:city/:lat/:lon')
         function next(promise) {
           
           promise.then(doc => {
-        //     if (doc) {
-        //         var lat2 = doc.Latitude; 
-        //         var lon2 = doc.Longitude; 
+            if (doc) {
+                var lat2 = doc.Latitude; 
+                var lon2 = doc.Longitude; 
                 
-        //         var d = calculateDistance(lat1, lat2, lon1, lon2);
+                var d = calculateDistance(lat1, lat2, lon1, lon2);
                 
-        //         // console.log(d);
-        //         if(d < 0.5)
-        //             response.push(doc);
-        //         next(cursor.next());
-        //     } else {
-        //         res.json(response.sort().slice(0,5));
-        //     }
+                if(d < 0.5)
+                    response.push(doc);
+                next(cursor.next());
+            } else {
+                res.json(response.sort().slice(0,5));
+            }
           })
         }
     });
@@ -53,22 +52,23 @@ function dateDisplayed(timestamp) {
     return (date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds());
 }
 
-// function toRad(x){
-//     return x * Math.PI / 180;
-// }
+function toRad(x){
+    return x * Math.PI / 180;
+}
 
-// function calculateDistance(lat1, lat2, lon1, lon2){
-//     var R = 6371;
-//     var x1 = lat2-lat1;
-//     var dLat = toRad(x1);  
-//     var x2 = lon2-lon1;
-//     var dLon = toRad(x2);  
-//     var a = Math.sin(dLat/2) * Math.sin(dLat/2) + 
-//             Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * 
-//             Math.sin(dLon/2) * Math.sin(dLon/2);  
-//     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-//     var d = R * c;
-//     return d;
-// }
+// function to calculate nearest meters using haversine formula
+function calculateDistance(lat1, lat2, lon1, lon2){
+    var R = 6371;
+    var x1 = lat2-lat1;
+    var dLat = toRad(x1);  
+    var x2 = lon2-lon1;
+    var dLon = toRad(x2);  
+    var a = Math.sin(dLat/2) * Math.sin(dLat/2) + 
+            Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * 
+            Math.sin(dLon/2) * Math.sin(dLon/2);  
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+    var d = R * c;
+    return d;
+}
 
 module.exports = router;
